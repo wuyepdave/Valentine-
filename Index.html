@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #fff0f5;
+  overflow: hidden;
+  margin: 0;
+  padding-top: 80px;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+img {
+  width: 220px;
+  border-radius: 20px;
+  margin: 20px 0;
+}
+
+button {
+  font-size: 1.3rem;
+  padding: 15px 35px;
+  margin: 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+  transition: transform 0.2s;
+}
+
+#no {
+  background: #ccc;
+  position: absolute;
+}
+
+#message {
+  font-size: 1.9rem;
+  margin-top: 30px;
+  display: none;
+  color: #d1004c;
+}
+
+.heart {
+  position: fixed;
+  font-size: 24px;
+  animation: float 5s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Dear Duke, would you be my Valentine?</h1>
+
+<img src="YOUR_IMAGE_URL_HERE" alt="Valentine Photo">
+
+<br>
+
+<button id="yes" onclick="yesClicked()">YES</button>
+<button id="no" onmouseover="moveNo()">NO</button>
+
+<div id="message">
+  I knew it, I mean who else would it be 💖
+</div>
+
+<audio id="music" loop>
+  <source src="YOUR_MUSIC_URL_HERE" type="audio/mpeg">
+</audio>
+
+<script>
+let scale = 1.1;
+
+function moveNo() {
+  const no = document.getElementById("no");
+  no.style.left = Math.random() * (window.innerWidth - 100) + "px";
+  no.style.top = Math.random() * (window.innerHeight - 50) + "px";
+}
+
+function yesClicked() {
+  document.getElementById("message").style.display = "block";
+  document.getElementById("music").play();
+  scale += 0.3;
+  document.getElementById("yes").style.transform = "scale(" + scale + ")";
+  spawnHearts();
+}
+
+function spawnHearts() {
+  for (let i = 0; i < 30; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+  }
+}
+</script>
+
+</body>
+</html>
